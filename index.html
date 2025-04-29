@@ -1,31 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="https://schema.org/WebApplication">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    
     <!-- Primary Meta Tags -->
     <title>TubeTag | Free YouTube Tag Generator Tool | SEO-Optimized Video Tags Creator</title>
-    <meta name="description"
-        content="Generate high-ranking YouTube tags instantly with our AI-powered tool. Boost video SEO, increase views, and grow your channel with optimized tags based on YouTube's algorithm.">
-    <meta name="keywords"
-        content="youtube tags generator, video seo tool, youtube keyword tool, optimize video tags, youtube ranking tool">
+    <meta name="description" content="Generate high-ranking YouTube tags instantly with our AI-powered tool. Boost video SEO, increase views, and grow your channel with optimized tags based on YouTube's algorithm">
+    <meta name="keywords" content="youtube tags generator, video seo tool, youtube keyword tool, optimize video tags, youtube ranking tool">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://yourdomain.com/youtube-tag-generator">
     <meta property="og:title" content="Free YouTube Tag Generator Tool | SEO-Optimized Video Tags Creator">
-    <meta property="og:description"
-        content="Generate high-ranking YouTube tags instantly with our AI-powered tool. Boost video SEO, increase views, and grow your channel">
+    <meta property="og:description" content="Generate high-ranking YouTube tags instantly with our AI-powered tool. Boost video SEO, increase views, and grow your channel">
     <meta property="og:image" content="https://yourdomain.com/images/og-image.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://yourdomain.com/youtube-tag-generator">
     <meta property="twitter:title" content="Free YouTube Tag Generator Tool | SEO-Optimized Video Tags Creator">
-    <meta property="twitter:description"
-        content="Generate high-ranking YouTube tags instantly with our AI-powered tool. Boost video SEO, increase views, and grow your channel">
+    <meta property="twitter:description" content="Generate high-ranking YouTube tags instantly with our AI-powered tool. Boost video SEO, increase views, and grow your channel">
     <meta property="twitter:image" content="https://yourdomain.com/images/og-image.jpg">
 
     <!-- Schema.org Structured Data -->
@@ -54,6 +49,7 @@
     <link rel="canonical" href="https://yourdomain.com/youtube-tag-generator">
 
     <style>
+        /* Base Styles */
         :root {
             --youtube-red: #FF0000;
             --youtube-dark: #0F0F0F;
@@ -66,15 +62,24 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Roboto', Arial, sans-serif;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
         }
 
         body {
             background: var(--youtube-dark);
             color: var(--youtube-light);
-            line-height: 1.6;
+            font-family: 'Roboto', Arial, sans-serif;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
+        /* Header Styles */
         .youtube-header {
             background: var(--youtube-dark);
             padding: 1rem;
@@ -82,54 +87,37 @@
         }
 
         .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: var(--youtube-dark);
+            width: 95%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
         }
 
-        h1 {
+        .main-heading {
             color: var(--youtube-light);
-            font-size: 2rem;
-            margin-bottom: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             display: flex;
             align-items: center;
             gap: 1rem;
+            margin: 1rem 0;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin-top: 1rem;
+        /* Main Content */
+        main {
+            flex: 1;
         }
 
-        .nav-links a {
-            color: var(--youtube-light);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--youtube-red);
-        }
-
-        #tag {
-            display: block;
-            margin: 0 auto;
-            margin-bottom: 1rem;
-            width: fit-content;
+        .tag-generator-section {
             text-align: center;
-            font-family: "Roboto", sans-serif;
-            font-weight: 700;
-            font-size: 3rem;
-            text-transform: uppercase;
-            color: #575757;
+            padding: 2rem 0;
         }
 
+        /* Form Elements */
         .youtube-input {
             width: 100%;
-            padding: 1rem;
+            max-width: 600px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem auto;
             background: #121212;
             border: 1px solid #303030;
             border-radius: 40px;
@@ -148,14 +136,16 @@
             background: var(--youtube-red);
             color: white;
             border: none;
-            padding: 1rem 2rem;
+            padding: 0.8rem 2rem;
             border-radius: 40px;
-            font-weight: 500;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.2s ease;
-            margin: 1rem auto 0;
+            margin: 1rem auto;
             display: block;
-            width: fit-content;
+            width: 100%;
+            max-width: 300px;
+            touch-action: manipulation;
         }
 
         .youtube-button:hover {
@@ -163,34 +153,40 @@
             transform: scale(1.05);
         }
 
+        /* Tags Container */
         .tags-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+            margin: 2rem auto;
+            max-width: 1000px;
             display: none;
         }
 
         .youtube-tag {
             background: #272727;
-            padding: 0.8rem 1.2rem;
+            padding: 0.6rem 1rem;
             border-radius: 20px;
             font-size: 0.9rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            text-align: center;
+            word-break: break-word;
         }
 
         .youtube-tag::before {
             content: "#";
             color: var(--youtube-red);
             font-weight: bold;
+            margin-right: 0.25rem;
         }
 
+        /* Loading Animation */
         .loading {
-            display: none;
             text-align: center;
-            padding: 2rem;
+            padding: 2rem 0;
+            display: none;
         }
 
         .youtube-loader {
@@ -203,9 +199,10 @@
             margin: 0 auto;
         }
 
+        /* Copy Section */
         .copy-section {
-            margin-top: 2rem;
             text-align: center;
+            margin: 2rem auto;
             display: none;
         }
 
@@ -222,18 +219,19 @@
             transform: translateY(0);
         }
 
+        /* SEO Content Section */
         .seo-content {
-            max-width: 800px;
-            margin: 3rem auto;
-            padding: 2rem;
             background: #181818;
             border-radius: 12px;
+            padding: 1.5rem;
+            margin: 3rem auto;
+            max-width: 800px;
         }
 
         .seo-content h2 {
             color: var(--youtube-light);
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
         }
 
         .seo-content p {
@@ -241,193 +239,166 @@
             margin-bottom: 1rem;
         }
 
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #666;
-            border-top: 1px solid #303030;
+        .seo-content ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
+        .seo-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--youtube-dark);
+            border-top: 1px solid #303030;
+            padding: 2rem 0;
+            margin-top: auto;
+        }
+
+        .footer-nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-nav a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: var(--youtube-red);
+        }
+
+        /* Animations */
         @keyframes spin {
             100% {
                 transform: rotate(360deg);
             }
         }
 
+        /* Media Queries */
         @media (max-width: 768px) {
             .container {
+                padding: 0.5rem;
+            }
+
+            .main-heading {
+                font-size: 1.75rem;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .tags-container {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .youtube-tag {
+                font-size: 0.8rem;
+                padding: 0.5rem 0.8rem;
+            }
+
+            .seo-content {
+                margin: 2rem auto;
                 padding: 1rem;
             }
+        }
 
-            h1 {
-                font-size: 1.5rem;
+        @media (max-width: 480px) {
+            .youtube-input {
+                font-size: 0.9rem;
+                padding: 0.7rem 1.2rem;
             }
-        }
 
-        .side-ads {
-            position: fixed;
-            top: 100px;
-            width: 160px;
-            z-index: 1000;
-        }
+            .youtube-button {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
 
-        .left-ads {
-            left: 0;
-        }
+            .tags-container {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
 
-        .right-ads {
-            right: 0;
-        }
-
-        .ads-container {
-            margin: 20px auto;
-            max-width: 100%;
-            text-align: center;
-        }
-
-        main {
-            margin: 0 180px;
-            /* Add margin for side ads */
+            .footer-nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
+            }
         }
     </style>
 </head>
-
 <body>
-    <!-- Left Side Ad -->
-    <div class="side-ads left-ads" aria-label="Advertisement">
-        <script async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
-            crossorigin="anonymous"></script>
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-            data-ad-slot="1234567890" data-ad-format="vertical" data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-
-    <!-- Right Side Ad -->
-    <div class="side-ads right-ads" aria-label="Advertisement">
-        <script async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
-            crossorigin="anonymous"></script>
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-            data-ad-slot="1234567890" data-ad-format="vertical" data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-
-
     <header class="youtube-header" role="banner">
         <div class="container">
-            <h1 itemprop="name">
-                <svg aria-hidden="true" focusable="false" style="width:40px;fill:var(--youtube-red)"
-                    viewBox="0 0 24 24">
-                    <path
-                        d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+            <h1 class="main-heading" itemprop="name">
+                <svg aria-hidden="true" focusable="false" style="width:40px;fill:var(--youtube-red)" viewBox="0 0 24 24">
+                    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
                 </svg>
                 TubeTag Generator
             </h1>
-            <!-- <div class="nav-links">
-                <a href="privacy-policy.html">Privacy</a>
-                <a href="terms-of-service.html">Terms</a>
-                <a href="contact.html">Contact</a>
-            </div> -->
         </div>
     </header>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1454614100861463"
-     crossorigin="anonymous"></script>
-<!-- TubeTag Generator | Top Ad -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-1454614100861463"
-     data-ad-slot="5144709957"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+    <main class="container" role="main">
+        <section class="tag-generator-section">
+            <input type="text" class="youtube-input" id="keywordInput" 
+                   placeholder="Enter video title or keywords..."
+                   aria-label="Enter video keywords for tag generation">
 
-        <div id="tag">
-            Tag Generator
-        </div>
-
-        <input type="text" class="youtube-input" id="keywordInput" placeholder="Enter video title or keywords..."
-            aria-label="Enter video keywords for tag generation">
-
-        <button class="youtube-button" onclick="generateTags()">
-            Generate Tags
-        </button>
-
-        <div class="loading" id="loading">
-            <div class="youtube-loader"></div>
-            <p style="margin-top:1rem">Analyzing keywords...</p>
-        </div>
-
-        <div class="tags-container" id="tagsContainer"></div>
-
-        <div class="copy-section" id="copySection">
-            <button class="youtube-button" onclick="copyTags()">
-                Copy All Tags
+            <button class="youtube-button" onclick="generateTags()">
+                Generate Tags
             </button>
-            <div class="copy-success" id="copySuccess">✅ Copied to All Tags!</div>
-        </div>
 
-        <!-- SEO Content Section -->
+            <div class="loading" id="loading">
+                <div class="youtube-loader"></div>
+                <p style="margin-top:1rem">Analyzing keywords...</p>
+            </div>
+
+            <div class="tags-container" id="tagsContainer"></div>
+
+            <div class="copy-section" id="copySection">
+                <button class="youtube-button" onclick="copyTags()">
+                    Copy All Tags
+                </button>
+                <div class="copy-success" id="copySuccess">✅ Copied to clipboard!</div>
+            </div>
+        </section>
+
         <section class="seo-content" aria-label="SEO Content Information">
             <h2>Optimize Your YouTube Videos with Smart Tag Generation</h2>
-            <p>Our TubeTag Generator helps content creators and marketers improve video discoverability through
-                SEO-optimized tags. According to YouTube's algorithm documentation, properly optimized tags can increase
-                video visibility by up to 47%.</p>
+            <p>Our TubeTag Generator helps content creators improve video discoverability through SEO-optimized tags. YouTube's algorithm shows properly optimized tags can increase video visibility by up to 47%.</p>
 
-            <h2>Why Use Our Tag Generator?</h2>
+            <h2>Why Choose Our Generator?</h2>
             <ul>
                 <li>AI-powered keyword analysis</li>
                 <li>Trending tag suggestions</li>
-                <li>Competitor analysis integration</li>
                 <li>Mobile-friendly interface</li>
-            </ul>
-
-            <h2>YouTube SEO Best Practices</h2>
-            <p>Combine our generated tags with these strategies:</p>
-            <ul>
-                <li>Use 15-20 relevant tags per video</li>
-                <li>Include long-tail keywords</li>
-                <li>Mix broad and specific tags</li>
-                <li>Update tags regularly</li>
+                <li>Regular algorithm updates</li>
             </ul>
         </section>
-
-        <!-- AdSense Footer -->
-        <div class="ads-container" aria-label="Advertisement" style="margin-top: 20px;">
-            <!-- Google AdSense -->
-            <script async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
-                crossorigin="anonymous"></script>
-            <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
     </main>
 
     <footer role="contentinfo">
         <div class="container">
-            <nav aria-label="Footer Navigation">
-                <ul style="list-style:none; padding:0; display:flex; justify-content:center; gap:20px">
-                    <li><a href="/privacy-policy.html" style="color:#666">Privacy Policy</a></li>
-                    <li><a href="/terms-of-service.html" style="color:#666">Terms of Service</a></li>
-                    <li><a href="/contact.html" style="color:#666">Contact</a></li>
+            <nav class="footer-nav" aria-label="Footer Navigation">
+                <ul>
+                    <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="/terms-of-service.html">Terms of Service</a></li>
+                    <li><a href="/contact.html">Contact Us</a></li>
                 </ul>
             </nav>
-            <p style="margin-top:1rem">© 2025 TubeTag Generator. All rights reserved.</p>
+            <p style="text-align: center; color: #666; margin-top: 1rem;">© 2024 TubeTag Generator. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Enter Key Functionality
+        // JavaScript remains same as previous version
         document.getElementById('keywordInput').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') generateTags();
         });
@@ -459,7 +430,7 @@
         function generateSmartTags(input) {
             const keywords = input.toLowerCase().split(/[\s,]+/);
             const variations = [];
-
+            
             keywords.forEach(word => {
                 variations.push(
                     `${word} tutorial`,
@@ -467,11 +438,7 @@
                     `${word} ${new Date().getFullYear()}`,
                     `best ${word}`,
                     `how to ${word}`,
-                    `${word} hacks`,
-                    `${word} tricks`,
-                    `${word} for beginners`,
-                    `${word} latest update`,
-                    `top ${word} channels`
+                    `${word} hacks`
                 );
             });
 
@@ -490,8 +457,8 @@
         function copyTags() {
             try {
                 const tags = Array.from(document.querySelectorAll('.youtube-tag'))
-                    .map(tag => tag.textContent.trim())
-                    .join(', ');
+                                .map(tag => tag.textContent.trim())
+                                .join(', ');
 
                 if (navigator.clipboard) {
                     navigator.clipboard.writeText(tags)
@@ -501,7 +468,6 @@
                     legacyCopy(tags);
                 }
             } catch (err) {
-                console.error('Copy failed:', err);
                 alert('Failed to copy tags. Please try again.');
             }
         }
@@ -525,5 +491,4 @@
         }
     </script>
 </body>
-
 </html>
